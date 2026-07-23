@@ -162,35 +162,6 @@ Fetches the profile card, then a character card for every showcase slot:
 python examples/full_showcase.py
 ```
 
----
-
-## Publishing a release
-
-Releases are published to PyPI automatically when you push a version tag.
-
-1. Bump `version` in [`pyproject.toml`](pyproject.toml) (e.g. `1.0.1`).
-2. Commit, then tag and push:
-
-```bash
-git tag v1.0.1
-git push origin v1.0.1
-```
-
-The [publish workflow](.github/workflows/publish.yml) will:
-
-1. Verify the tag (`v1.0.1`) matches `project.version` in `pyproject.toml`
-2. Build the sdist and wheel
-3. Upload to [PyPI](https://pypi.org/project/honkai_cards/) using `PYPI_TOKEN`
-
-### One-time setup
-
-1. Create an API token on [pypi.org](https://pypi.org/manage/account/token/) (scope: project `honkai_cards`, or entire account).
-2. In the GitHub repo → **Settings** → **Secrets and variables** → **Actions**, add:
-   - Name: `PYPI_TOKEN`
-   - Value: the token (`pypi-...`)
-3. (Optional) Create a GitHub Environment named `pypi` for release protection rules.
-
----
 
 ## Project layout
 
