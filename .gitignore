@@ -3,3 +3,6 @@
 src/honkai_cards/cache
 test.py
 *.pyc
+*.egg-info
+dist/
+.venv

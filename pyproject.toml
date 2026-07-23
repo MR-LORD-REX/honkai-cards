@@ -4,20 +4,38 @@ build-backend="setuptools.build_meta"
 
 [project]
 name="honkai_cards"
-version="1.0.0"
+version="1.0.2"
 description="A library for creating beautiful character cards with dps benchmark for honkai starrail"
 authors=[
     { name="sora", email="sahikast6@gmail.com" }
 ]
 readme="README.md"
 license={file="LICENSE.txt"}
+requires-python=">=3.10"
+keywords=["honkai", "star-rail", "hsr", "enka", "character-card", "hoyoverse"]
+classifiers=[
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Multimedia :: Graphics",
+]
 dependencies=[
     "pydantic>=2.5",
     "aiohttp>=3.9",
     "enka",
     "pillow>=12.2.0",
-    "numpy>=2.4.5"
+    "numpy>=1.26"
 ]
+
+[project.urls]
+Homepage="https://github.com/MR-LORD-REX/honkai-cards"
+Repository="https://github.com/MR-LORD-REX/honkai-cards.git"
+Issues="https://github.com/MR-LORD-REX/honkai-cards/issues"
 [tool.setuptools.packages.find]
 where=["src"]
 
