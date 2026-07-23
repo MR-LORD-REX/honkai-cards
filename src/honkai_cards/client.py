@@ -53,7 +53,8 @@ class HSR:
             chars.append(
                 P1Char(
                     slot=i,
-                    charid=c.id
+                    charid=c.id,
+                    name=c.name
                 )
             )
         pfp=Profile1(

@@ -47,6 +47,7 @@ class Profile(BaseModel):
 class P1Char(BaseModel):
     slot:int
     charid:int
+    name:str
     
 class Profile1(BaseModel):
     model_config=ConfigDict(arbitrary_types_allowed=True)
