@@ -1,0 +1,5 @@
+.enka_py
+.pytest_cache
+src/honkai_cards/cache
+test.py
+*.pyc

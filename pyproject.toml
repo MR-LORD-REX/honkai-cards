@@ -1,0 +1,28 @@
+[build-system]
+requires=["setuptools>=61.0"]
+build-backend="setuptools.build_meta"
+
+[project]
+name="honkai_cards"
+version="1.0.0"
+description="A library for creating beautiful character cards with dps benchmark for honkai starrail"
+authors=[
+    { name="sora", email="sahikast6@gmail.com" }
+]
+readme="README.md"
+license={file="LICENSE.txt"}
+dependencies=[
+    "pydantic>=2.5",
+    "aiohttp>=3.9",
+    "enka",
+    "pillow>=12.2.0",
+    "numpy>=2.4.5"
+]
+[tool.setuptools.packages.find]
+where=["src"]
+
+[tool.setuptools.package-dir]
+"" = "src"
+
+[tool.setuptools]
+include-package-data=true
