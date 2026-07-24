@@ -1,7 +1,7 @@
 from PIL import Image, ImageFont, ImageDraw, ImageFilter
 import asyncio
 
-from ..models.build_card import BuildCardResponse, LightCone
+from ..models.build_card import BuildCardResponse, LightCone , Action
 from ..utils.asset_manager import asset_manager as AM, Fonts
 from ..utils.image import paste, paste_text, align_center_paste, align_center_paste_text, paste_center, crop_from_center, paste_border
 
@@ -10,6 +10,8 @@ from .stats import build_stats_panel
 
 f35 = Fonts.get("bold", 35)
 f25 = Fonts.get("bold",25)
+f20= Fonts.get("bold",15)
+f15= Fonts.get("bold",15)
 
 
 async def render_lc(lc: LightCone) -> Image.Image:
@@ -33,6 +35,19 @@ async def render_lc(lc: LightCone) -> Image.Image:
         
     return lc_bg
 
+async def make_dmg_card(main_bg:Image.Image,actions:list[Action]):
+    bg=Image.new("RGBA",(323,269),(0,0,0,200))
+    draw=ImageDraw.Draw(bg)
+    align_center_paste_text(draw,"DMG DISTRIBUTION",f25,2,(212,175,55,255))
+    t=[]
+    for i,a in enumerate(actions):
+        txt=f"{i+1}.{a.actionType}"
+        dmg=f"{a.damage/1000:.1f}k"
+        t.append(asyncio.to_thread(paste_text,draw,txt,(12,50+i*32),f25))
+        t.append(asyncio.to_thread(paste_text,draw,dmg,(234,50+i*32),f25,(212,175,55,255)))
+    await asyncio.gather(*t)
+    
+    main_bg.alpha_composite(bg,(525,1171))
 
 async def build_character1(char: BuildCardResponse) -> Image.Image:
     async def make_uid_bg():
@@ -84,5 +99,7 @@ async def build_character1(char: BuildCardResponse) -> Image.Image:
         asyncio.to_thread(paste, bg, st, (861, 8)),
         asyncio.to_thread(paste, bg, char_bg, (8, 8)),
     )
+    if char.actions:
+        await make_dmg_card(bg,char.actions)
 
     return bg

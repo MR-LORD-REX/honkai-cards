@@ -25,7 +25,7 @@ team = [
     ),
 ]
 
-uid=713987091
+uid=800556377
 
 async def main():
     async with HSR() as hsr:
@@ -33,11 +33,11 @@ async def main():
         c1.card.show()
         for c in c1.characters:
             print(c.name)
-        c2=await hsr.character(uid,0)
-        c2.show()
+        c2=await hsr.character(uid,7)
+        c2.save("test.png")
         c3=await hsr.custom_team(
             uid , teammates=team,
-            slot=3
+            slot=1
         )
         c3.save("test.png")
 

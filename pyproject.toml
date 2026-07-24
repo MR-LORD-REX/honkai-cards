@@ -4,7 +4,7 @@ build-backend="setuptools.build_meta"
 
 [project]
 name="honkai_cards"
-version="1.0.5"
+version="1.0.6"
 description="A library for creating beautiful character cards with dps benchmark for honkai starrail"
 authors=[
     { name="sora", email="sahikast6@gmail.com" }

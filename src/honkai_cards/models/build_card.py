@@ -97,28 +97,12 @@ class RelicScore(BaseModel):
     rank: str
 
 
-class ActionValues(BaseModel):
-    BASIC: str | None = None
-    SKILL: str | None = None
-    ULT: str | None = None
-    FUA: str | None = None
-    DOT: str | None = None
-    BREAK: str | None = None
-    MEMO_SKILL: str | None = None
-    MEMO_TALENT: str | None = None
-    ELATION_SKILL: str | None = None
-    UNIQUE: str | None = None
-    BASIC_HEAL: str | None = None
-    SKILL_HEAL: str | None = None
-    ULT_HEAL: str | None = None
-    FUA_HEAL: str | None = None
-    TALENT_HEAL: str | None = None
-    BASIC_SHIELD: str | None = None
-    SKILL_SHIELD: str | None = None
-    ULT_SHIELD: str | None = None
-    FUA_SHIELD: str | None = None
-    TALENT_SHIELD: str | None = None
-    BUFF: str | None = None
+class Action(BaseModel):
+    actionType:str
+    actionName: str
+    damage : float
+    buffStat: str | None = None
+        
 
 
 class Relic(BaseModel):
@@ -147,5 +131,5 @@ class BuildCardResponse(BaseModel):
     combatStats: StatBundle | None = None
     benchmarkStats:StatBundle | None =None
     relics: list[Relic]
-    actions: ActionValues
+    actions: list[Action] = []
     benchmarkDisplay: BenchmarkDisplay | None = None
