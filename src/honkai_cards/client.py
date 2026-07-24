@@ -5,6 +5,7 @@ from .characters.character1 import build_character1
 from .profile.profile1 import build_profile1
 
 from .models.profile import P1Char , Profile1
+from .models.customTeams import Teammates , Teammate
 
 class HSR:
     def __init__(self) -> None:
@@ -32,6 +33,27 @@ class HSR:
         
         """
         data=await self.api.get_build(uid,slot,benchmark=benchmark)
+        
+        return await build_character1(data)
+    
+    async def custom_team(
+        self,
+        uid:int|str,
+        teammates: list[Teammate],
+        slot:int=0,
+        benchmark:bool=True
+    )-> Image.Image | None:
+        """
+        get character showcase 
+        
+        args:
+        uid = 80000000 (in game uid)
+        slot = 0 ( 0-7  character from showcase )
+        benchmark= True|False (run character dps benchmark)
+        
+        
+        """
+        data=await self.api.get_custom_build(uid,slot,benchmark=benchmark,team=teammates)
         
         return await build_character1(data)
     

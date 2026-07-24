@@ -8,6 +8,7 @@ from pydantic import ValidationError
 
 from .models.build_card import BuildCardResponse
 from .models.profile import Character, Icons, Player, PlayerStats, Profile
+from .models.customTeams import Teammate , Teammates
 
 CHARACTER_CARD_URL = (
     "https://github.com/fribbels/hsr-optimizer/raw/main/public/assets"
@@ -36,7 +37,25 @@ class BuildAPI:
                 return await self._request_build_card(client, url, payload)
 
         return await self._request_build_card(session, url, payload)
+    
+    async def get_custom_build(
+        self,
+        uid: str | int,
+        slot: int, *,
+        team: list[Teammate] , 
+        benchmark: bool = True,
+        session: Optional[aiohttp.ClientSession] = None
+    ) -> BuildCardResponse:
+        
+        payload = {"uid": str(uid), "slot": slot, "benchmark": benchmark,"teammates":[t.model_dump() for t in team]}
+        url = f"{self.base_url}/get_custom_cals"
 
+        if session is None:
+            async with aiohttp.ClientSession() as client:
+                return await self._request_build_card(client, url, payload)
+
+        return await self._request_build_card(session, url, payload)
+        
     async def _request_build_card(self, session: aiohttp.ClientSession, url: str, payload: dict[str, Any]) -> BuildCardResponse:
         async with session.post(url, json=payload) as response:
             response.raise_for_status()
