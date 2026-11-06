@@ -125,6 +125,10 @@ if __name__ == "__main__":
 python examples/character_card.py
 ```
 
+#### Example output
+
+![Generated character showcase card](examples/images/char.png)
+
 ### Profile card
 
 ```python
